@@ -1,7 +1,15 @@
 1) What are PropTypes used for? Please describe why it's important to type check our data in JavaScript.
 
+PropTypes is a library that is used to type check the data being passed to our React components as props. More specifically, it is used to ensure that the props a component is receiving match the expected data types. This is important to do in JavaScript because the language is dynamically typed, meaning that variables are allowed to change data types with  no issues or flags raised during compile time. This can cause bugs in our code if we inadvertently change the data type of a variable that we expected to remain the same (e.g, changing `myNum = 5` to `myNum = "5"` when we expected myNum to be a Number, not a String).
+
 2) Describe a life-cycle event in React.
 
-3) Explain the details of a Higher Order Component?
+In React, 'lifecycle' refers to the the different stages a component goes through while being rendered on the screen (mounting), being taken off the screen (unmounting), and any time its state changes (updating). Only class/stateful components have access to lifecycle methods because they are inherited from the base React.Component class. Lifecycle methods are invoked during the appropriate lifecycle event (mounting, updating, unmounting).
+
+3) Explain the details of a Higher Order Component.
+
+A Higher Order Component (a.k.a. HOC) is a "function that takes a component and returns a new component" (quoted from reactsjs.org). In JavaScript, a Higher Order Function is a function that receives another function (callback function) as an argument, adds some functionality to that cb function, and returns a result. HOC's work in a similar way. In React, you can create a function that receives one or more components as arguments (note that React components are just functions), add some functionality and then return a component. One use case for HOC's is to conditionally render a component based on conditions that need to be met. For example, rendering a Login page if the user is not logged in or rendering the app content if a user is logged in.
 
 4) What are three different ways to style components in React? Explain some of the benefits of each.
+
+Three common ways to style components are: using vanilla CSS or preprocessors (e.g, LESS, SASS, etc), CSS in JS (through a library like Styled Components), or using third-party libraries like Reactstrap or Material-UI. CSS has been the standard in web development for a long time. It is a well documented technology that works and is still viable. CSS preprocessors extend the functionality of CSS by giving us access to variables and mixins that make the development experience easier. Styled Components simplify our applications by removing additional styling files and allowing us to use the power of JavaScript to style our apps. Third-party libraries, like Reactstrap, speed up development time by giving us a predefined library of React components that already have a basic theme/style. These can then be customized to meet the specific requirements of our apps.
