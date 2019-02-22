@@ -21,7 +21,21 @@ const TopBar = props => {
         </TopBarCenter>
         <TopBarRight>
           <span onClick={props.toggleModal}>
-            <Button color="primary">Log In</Button>
+            <Button 
+              color="primary" 
+              style={localStorage.getItem('User')? {display: 'none'} : {display: 'inline'}}
+            >
+              Log In
+            </Button>
+          </span>
+          <span>
+            <Button 
+              color="danger" 
+              style={localStorage.getItem('User')? {display: 'inline'} : {display: 'none'}}
+              onClick={props.logoutHandler}
+            >
+              Log Out
+            </Button>
           </span>
         </TopBarRight>
       </TopBarContent>

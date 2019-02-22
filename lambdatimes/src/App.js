@@ -30,6 +30,12 @@ class App extends Component {
     this.setState({ user: e.target.value })
   }
 
+  logout = e => {
+    e.preventDefault();
+    localStorage.clear();
+    window.location.reload();
+  }
+
 
   render() {
     return (
@@ -40,6 +46,7 @@ class App extends Component {
           value={this.state.user} 
           submitHandler={this.submitForm}
           handleChanges={this.handleChanges}
+          logoutHandler={this.logout}
         />
         <Header />
         <Content />
