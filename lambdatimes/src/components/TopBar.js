@@ -1,10 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { 
+  Button, Modal, ModalHeader, ModalBody, ModalFooter, 
+  Form, FormGroup, Label, Input
+} from 'reactstrap';
 
 // Refactor this component to use styled components and not classNames. 
 // You can find the corresponding CSS in the CSS/index.css file
 
-const TopBar = () => {
+const TopBar = props => {
   return (
     <TopBarWrapper>
       <TopBarContent>
@@ -15,9 +20,30 @@ const TopBar = () => {
           <span>GENERAL</span><span>BROWNBAG</span><span>RANDOM</span><span>MUSIC</span><span>ANNOUNCEMENTS</span>
         </TopBarCenter>
         <TopBarRight>
-          <span>LOG IN</span>
+          <span onClick={props.toggleModal}>
+            <Button color="primary">Log In</Button>
+          </span>
         </TopBarRight>
       </TopBarContent>
+      <Modal isOpen={props.modal} toggle={props.toggleModal}>
+        <ModalHeader toggle={props.toggleModal}>Log In to View Content</ModalHeader>
+        <ModalBody>
+          <Form>
+            <FormGroup>
+              <Label for="User">Email</Label>
+              <Input type="email" name="email" id="User" placeholder="example@email.com" value={props.value} onChange={props.handleChanges}/>
+            </FormGroup>
+            <FormGroup>
+              <Label for="FakePassword">Password</Label>
+              <Input type="password" name="password" id="FakePassword" placeholder="fake password..." />
+            </FormGroup>
+          </Form>
+        </ModalBody>
+        <ModalFooter>
+          <Button color="primary" onClick={props.submitHandler}>Continue</Button>{' '}
+          <Button color="danger" onClick={props.toggleModal}>Cancel</Button>
+        </ModalFooter>
+      </Modal>
     </TopBarWrapper>
   )
 }
@@ -32,6 +58,7 @@ const TopBarWrapper = styled.div`
   position: fixed;
   height: 44px;
   background-color: #333;
+  z-index: 1000;
 `;
 
 const TopBarContent = styled.div`
@@ -98,5 +125,10 @@ const TopBarRight = styled.div`
     cursor: pointer;
   }
 `;
+
+TopBar.propTypes = {
+  toggleModal: PropTypes.func.isRequired,
+  modal: PropTypes.bool.isRequired
+}
 
 export default TopBar;
